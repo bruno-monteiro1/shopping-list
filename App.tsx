@@ -27,7 +27,9 @@ export default function App() {
       </View>
       <View style={styles.itemsContainer}>
         {items.map((item, index) => (
-          <Text key={index}>{item}</Text>
+          <View key={index} style={styles.item}>
+            <Text style={styles.itemText}>{item}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -56,5 +58,15 @@ const styles = StyleSheet.create({
   },
   itemsContainer: {
     flex: 5,
+  },
+  item: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 5,
+    backgroundColor: "blue",
+    color: "white",
+  },
+  itemText: {
+    color: "white",
   },
 });
