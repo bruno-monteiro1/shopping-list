@@ -5,11 +5,11 @@ import {
   Text,
   TextInput,
   View,
-  ScrollView,
+  FlatList,
 } from "react-native";
 
 export default function App() {
-  const [items, setItems] = useState<string[]>([]);
+  const [items, setItems] = useState<{ data: string; id: string }[]>([]);
   const [newItemText, setNewItemText] = useState<string>("");
 
   const itemInputHandler = (text: string) => {
@@ -17,7 +17,10 @@ export default function App() {
   };
 
   const addItemHandler = () => {
-    setItems((currentItems) => [...currentItems, newItemText]);
+    setItems((currentItems) => [
+      ...currentItems,
+      { data: newItemText, id: Math.random().toString() },
+    ]);
     setNewItemText("");
   };
 
@@ -33,13 +36,17 @@ export default function App() {
         <Button title="Adicionar" onPress={addItemHandler} />
       </View>
       <View style={styles.itemsContainer}>
-        <ScrollView>
-          {items.map((item, index) => (
-            <View key={index} style={styles.item}>
-              <Text style={styles.itemText}>{item}</Text>
-            </View>
-          ))}
-        </ScrollView>
+        <FlatList
+          data={items}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.item}>
+                <Text style={styles.itemText}>{item.data}</Text>
+              </View>
+            );
+          }}
+        />
       </View>
     </View>
   );
