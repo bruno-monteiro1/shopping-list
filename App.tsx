@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
   const [items, setItems] = useState<string[]>([]);
@@ -26,11 +33,13 @@ export default function App() {
         <Button title="Adicionar" onPress={addItemHandler} />
       </View>
       <View style={styles.itemsContainer}>
-        {items.map((item, index) => (
-          <View key={index} style={styles.item}>
-            <Text style={styles.itemText}>{item}</Text>
-          </View>
-        ))}
+        <ScrollView>
+          {items.map((item, index) => (
+            <View key={index} style={styles.item}>
+              <Text style={styles.itemText}>{item}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
