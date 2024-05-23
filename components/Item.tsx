@@ -1,7 +1,8 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 
 interface ItemProps {
   item: Item;
+  onRemoveItem: (id: string) => void;
   index?: string;
   separators?: {
     highlight: () => void;
@@ -15,11 +16,13 @@ export interface Item {
   id: string;
 }
 
-function Item({ item }: ItemProps) {
+function Item({ item, onRemoveItem }: ItemProps) {
   return (
-    <View style={styles.item}>
-      <Text style={styles.itemText}>{item.data}</Text>
-    </View>
+    <Pressable onPress={() => onRemoveItem(item.id)}>
+      <View style={styles.item}>
+        <Text style={styles.itemText}>{item.data}</Text>
+      </View>
+    </Pressable>
   );
 }
 

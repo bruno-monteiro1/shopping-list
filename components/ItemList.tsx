@@ -5,16 +5,17 @@ import ItemComponent from "./Item";
 
 interface ItemListProps {
   items: Item[];
+  onRemoveItem: (id: string) => void;
 }
 
-function ItemList({ items }: ItemListProps) {
+function ItemList({ items, onRemoveItem }: ItemListProps) {
   return (
     <View style={styles.itemsContainer}>
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
-          return <ItemComponent item={item} />;
+          return <ItemComponent item={item} onRemoveItem={onRemoveItem} />;
         }}
       />
     </View>

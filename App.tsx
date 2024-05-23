@@ -16,10 +16,14 @@ export default function App() {
     ]);
   };
 
+  const removeItemHandler = (id: string) => {
+    setItems((currentItems) => currentItems.filter((item) => item.id !== id));
+  };
+
   return (
     <View style={styles.appContainer}>
       <ItemInput onAddItem={addItemHandler} />
-      <ItemList items={items} />
+      <ItemList items={items} onRemoveItem={removeItemHandler} />
     </View>
   );
 }
