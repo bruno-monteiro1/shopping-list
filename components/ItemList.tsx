@@ -27,5 +27,6 @@ export default ItemList;
 const styles = StyleSheet.create({
   itemsContainer: {
     flex: 5,
+    marginTop: 15,
   },
 });

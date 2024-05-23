@@ -32,13 +32,13 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
+      <ItemList items={items} onRemoveItem={removeItemHandler} />
       <Button title="Adicionar item" color="blue" onPress={openModal} />
       <ItemInput
         onAddItem={addItemHandler}
         visible={isModalVisible}
         onCancel={closeModal}
       />
-      <ItemList items={items} onRemoveItem={removeItemHandler} />
     </View>
   );
 }

@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import {
   StyleSheet,
@@ -27,28 +28,31 @@ function ItemInput({ onAddItem, visible, onCancel }: ItemInput) {
   };
 
   return (
-    <Modal visible={visible} animationType="slide">
-      <View style={styles.inputContainer}>
-        <Image
-          source={require("../assets/images/shopping-cart.png")}
-          style={styles.image}
-        />
-        <TextInput
-          placeholder="O que deseja adicionar?"
-          style={styles.textInput}
-          onChangeText={itemInputHandler}
-          value={newItemText}
-        />
-        <View style={styles.buttonsContainer}>
-          <View style={styles.button}>
-            <Button title="Adicionar" onPress={addInputHandler} />
-          </View>
-          <View style={styles.button}>
-            <Button title="Cancelar" onPress={onCancel} />
+    <>
+      <StatusBar backgroundColor="darkblue" style="light"/>
+      <Modal visible={visible} animationType="slide">
+        <View style={styles.inputContainer}>
+          <Image
+            source={require("../assets/images/shopping-cart.png")}
+            style={styles.image}
+          />
+          <TextInput
+            placeholder="O que deseja adicionar?"
+            style={styles.textInput}
+            onChangeText={itemInputHandler}
+            value={newItemText}
+          />
+          <View style={styles.buttonsContainer}>
+            <View style={styles.button}>
+              <Button title="Adicionar" onPress={addInputHandler} />
+            </View>
+            <View style={styles.button}>
+              <Button title="Cancelar" onPress={onCancel} />
+            </View>
           </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </>
   );
 }
 
