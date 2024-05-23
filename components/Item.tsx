@@ -18,11 +18,15 @@ export interface Item {
 
 function Item({ item, onRemoveItem }: ItemProps) {
   return (
-    <Pressable onPress={() => onRemoveItem(item.id)}>
-      <View style={styles.item}>
+    <View style={styles.item}>
+      <Pressable
+        android_ripple={{ color: "darkblue" }}
+        onPress={() => onRemoveItem(item.id)}
+        style={({ pressed }) => pressed && styles.pressedItem}
+      >
         <Text style={styles.itemText}>{item.data}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 }
 
@@ -31,12 +35,15 @@ export default Item;
 const styles = StyleSheet.create({
   item: {
     margin: 8,
-    padding: 8,
     borderRadius: 5,
     backgroundColor: "blue",
     color: "white",
   },
+  pressedItem: {
+    opacity: 0.7,
+  },
   itemText: {
+    padding: 8,
     color: "white",
   },
 });
